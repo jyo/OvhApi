@@ -84,7 +84,7 @@ class OvhApi
      * @param string $_method GET POST DELETE or UPDATE
      * @param string $_url The call url wanted
      * @param array $_body Parameters as keys values array
-     * @return array
+     * @return array, empty array on error
      */
     public function call(string $_method, string $_url, array $_body = []) : array
     {
@@ -118,7 +118,7 @@ class OvhApi
         if($result === FALSE)
         {
             echo curl_error($curl);
-            return NULL;
+            return []; // don't return NULL, as an array is specified
         }
 
         return json_decode($result, true);
